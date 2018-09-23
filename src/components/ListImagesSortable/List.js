@@ -1,6 +1,6 @@
 import CardElem from './common/CardElem.js';
 
-function liItem(card) {
+function Item(card) {
   let li = document.createElement('li');
 
   li.appendChild(card);
@@ -12,8 +12,10 @@ function liItem(card) {
 function ListItems(items) {
   let ul = document.createElement('ul');
 
+  ul.setAttribute('id', 'listItems');
+
   items.map(item => {
-    ul.appendChild(liItem(CardElem(item)));
+    ul.appendChild(Item(CardElem(item)));
   });
 
   return ul;
