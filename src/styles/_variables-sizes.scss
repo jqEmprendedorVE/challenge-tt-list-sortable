@@ -1,5 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300');
+// Fonts 
+@import url('https://fonts.googleapis.com/css?family=Raleway:100,600,400');
+$theme-font: 'Raleway', sans-serif;
 
+//Colors
 $themeColor-Light: #f6f6f6;
 $themeColor-Dark: #333;
-$theme-font: 'Open Sans', sans-serif;
+
+// Variables for Grid
+$grid-spacing:3%;
