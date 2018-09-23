@@ -1,11 +1,34 @@
-
 @import '_variables-sizes.scss';
 @import '_typography.scss';
+@import '_grid.scss';
+@import '_buttons.scss';
 
 body {
   font-family: $theme-font;
   background-color: $themeColor-Light;
+
+  margin: auto;
+  width: 80%;
+  padding: 10px;
+  margin-top: 50px;
+
   h1, h2 {
-      color: $themeColor-Dark
+    margin-top: 0px;
+    margin-bottom: 3px;
+    color: $themeColor-Dark
   }
+
+  textarea {
+
+  }
+
+  .text-brown {
+    color: brown
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 0px;
+  }
+
 }
