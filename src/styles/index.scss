@@ -1,0 +1,11 @@
+
+@import '_variables-sizes.scss';
+@import '_typography.scss';
+
+body {
+  font-family: $theme-font;
+  background-color: $themeColor-Light;
+  h1, h2 {
+      color: $themeColor-Dark
+  }
+}
