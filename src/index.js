@@ -1,7 +1,6 @@
 import dragsort from 'dragsort';
-
 import App from './containers/App.js';
-import initSortable from './domain/sortable.js';
+import initEventHandler from './domain/eventHandlerApp.js';
 import './styles/index.css';
 
 let loadComponents = new Promise((resolve, reject) => {
@@ -16,5 +15,5 @@ let loadComponents = new Promise((resolve, reject) => {
 });
 
 loadComponents.then(() => {
-  initSortable();
+  initEventHandler();
 });
