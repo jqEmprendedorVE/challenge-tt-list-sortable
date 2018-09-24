@@ -1,7 +1,7 @@
 import { br } from '../../../constants/index.js';
 import ImageElem from './ImageElem.js';
 
-function CardElem({image, text}) {
+function CardElem({downloadURL, description}) {
   let element = document.createElement('figure');
   let p = document.createElement('p')
   let style = `
@@ -20,9 +20,9 @@ function CardElem({image, text}) {
 
   element.setAttribute('style', style);
 
-  p.innerHTML = `<small>${text}</small><small><br><a><i class="fas fa-pen"></i></a>&nbsp;&nbsp;&nbsp;<a><i class="fas fa-trash"></i></a></small>`;
+  p.innerHTML = `<small>${description}</small><small><br><a><i class="fas fa-pen"></i></a>&nbsp;&nbsp;&nbsp;<a><i class="fas fa-trash"></i></a></small>`;
 
-  element.appendChild(ImageElem(image));
+  element.appendChild(ImageElem(downloadURL));
   element.appendChild(p);
 
   return element;
