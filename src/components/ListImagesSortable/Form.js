@@ -64,7 +64,8 @@ function Form() {
 
   divSetDescription.setAttribute('id', 'setDescription');
   divSetDescription.setAttribute('style', 'display:none');
-  divSetDescription.appendChild(ImageElem(null,'prevImgForm', 'cursor: pointer;'));
+  divSetDescription.appendChild(ImageElem(null,'prevImgForm', 'cursor: pointer;max-width: 320px;max-height: 320px;'));
+  divSetDescription.appendChild(br());
   divSetDescription.appendChild(inputFile());
   divSetDescription.appendChild(textArea());
   divSetDescription.appendChild(btnSave());
