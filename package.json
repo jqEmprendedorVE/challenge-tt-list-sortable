@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "dragsort": "^1.0.5",
+    "firebase": "^5.5.1",
     "http-server": "^0.11.1",
     "lodash": "^4.17.11",
     "node-sass-chokidar": "^1.3.3",

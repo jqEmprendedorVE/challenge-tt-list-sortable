@@ -79,4 +79,8 @@
     outline: 1px dotted white;
     outline-offset: -4px;
   }
+
+  &:disabled {
+    background: #638b54;
+  }
 }

@@ -1,8 +1,6 @@
 import { br } from '../../constants/index.js';
 import ImageElem from './common/ImageElem.js';
 
-const imageForUpload = 'https://www.schluga.com/fileadmin/_processed_/7/1/csm_Aktiv_im_Sommer_7ca702842a.jpg';
-
 function btnUploadImg() {
   let element = document.createElement('button');
 
@@ -19,6 +17,7 @@ function btnSave() {
   element.setAttribute('id', 'btnSave');
   element.setAttribute('class', 'button -success');
   element.innerHTML = 'Add image to the list';
+  element.disabled = true;
 
   return element;
 }
@@ -26,12 +25,12 @@ function btnSave() {
 function textArea() {
   let element = document.createElement('textarea');
 
-  element.setAttribute('name', 'post');
+  element.setAttribute('id', 'descriptionImg');
   element.setAttribute('maxlength', 300);
   element.setAttribute('cols',43);
   element.setAttribute('rows', 7);
   element.setAttribute('placeholder', 'Describe this picture...');
-  element.setAttribute('style', 'margin-top: 8px;border-radius: 3px;font-family: "Raleway";')
+  element.setAttribute('style', 'margin-top: 8px;margin-bottom: 6px;border-radius: 3px;font-family: "Raleway";max-width: 314px;')
 
   return element;
 
@@ -65,7 +64,7 @@ function Form() {
 
   divSetDescription.setAttribute('id', 'setDescription');
   divSetDescription.setAttribute('style', 'display:none');
-  divSetDescription.appendChild(ImageElem(null,'prevImgForm'));
+  divSetDescription.appendChild(ImageElem(null,'prevImgForm', 'cursor: pointer;'));
   divSetDescription.appendChild(inputFile());
   divSetDescription.appendChild(textArea());
   divSetDescription.appendChild(btnSave());

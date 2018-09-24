@@ -1,6 +1,6 @@
 import { image320 } from '../../../constants/index.js';
 
-function ImageElem(image, id) {
+function ImageElem(image, id, style) {
   if(!image) image = image320;
   let element = document.createElement('img');
 
@@ -8,6 +8,9 @@ function ImageElem(image, id) {
 
   if(id)
     element.setAttribute('id',id)
+
+  if(style)
+    element.setAttribute('style',style)
 
   return element;
 }
