@@ -1,6 +1,6 @@
 import CardElem from './common/CardElem.js';
 
-function Item(card) {
+export function Item(card) {
   let li = document.createElement('li');
 
   li.appendChild(card);
@@ -21,11 +21,11 @@ function ListItems(items) {
   return ul;
 }
 
-function List(items) {
+export function List(items) {
   let element = document.createElement('div');
 
   const h2 = '<h2>List of items added</h2>';
-  const span = `<span class="text-brown"><small>${items.length} items listed.</small></span>`;
+  const span = `<span id="showCountItem" class="text-brown"><small>${items.length} items listed.</small></span>`;
   const p = `<p><small>Drag and drop the items for sortable. ${span}</small></p>`;
 
   element.setAttribute('class', 'col-6');
@@ -37,4 +37,7 @@ function List(items) {
 
 }
 
-export default List;
+export default {
+  List,
+  Item
+};

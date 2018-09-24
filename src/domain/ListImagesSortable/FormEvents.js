@@ -1,3 +1,9 @@
+import CardElem from '../../components/ListImagesSortable/common/CardElem.js';
+import { Item } from '../../components/ListImagesSortable/List.js';
+import { loadItemsforList } from './ListEvents.js';
+import { List } from '../../components/ListImagesSortable/List.js';
+
+
 function readURL() {
   if (getImageFromPc.files && getImageFromPc.files[0]) {
     let file = getImageFromPc.files[0];
@@ -35,6 +41,13 @@ export default function initFormEvents(fb) {
           downloadURL,
           description: descriptionImg.value
         }).then(() => {
+          if(['null', 'undefined'].indexOf(typeof listItems) === -1){
+            listItems.appendChild(Item(CardElem({downloadURL, description: descriptionImg.value})));
+            showCountItem.innerHTML = `<small>${listItems.querySelectorAll("li").length} items listed.</small>`
+          } else {
+            loadItemsforList(rowMain, List, fb);
+          }
+
           descriptionImg.value = '';
           getImageFromPc.value = '';
           setDescription.setAttribute('style', 'display:none');
