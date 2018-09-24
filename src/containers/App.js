@@ -2,7 +2,6 @@ import fb from '../services/ApiClient.js';
 import { updateListOrder } from '../domain/ListImagesSortable/ListEvents.js';
 import { loadItemsforList } from '../domain/ListImagesSortable/ListEvents.js';
 import initSortable from '../domain/sortable.js';
-
 import Form from '../components/ListImagesSortable/Form.js';
 import { List } from '../components/ListImagesSortable/List.js';
 
@@ -22,11 +21,7 @@ class App {
 
   loadItems(element) {
     let items = [];
-
     loadItemsforList(element, List, fb);
-
-    
-
   }
 }
 
