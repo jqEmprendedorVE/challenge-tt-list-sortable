@@ -31,7 +31,7 @@ export const loadItemsforList = (element, List, fb) => {
     let res = _.sortBy(snapshot.val(), ['order']);
     let _items = [];
 
-    if(!res) return [];
+    if(res.length===0) return;
 
     Object.keys(res).forEach(i=>{
       _items.push({

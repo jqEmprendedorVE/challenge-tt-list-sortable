@@ -42,8 +42,10 @@ export default function initFormEvents(fb) {
           description: descriptionImg.value
         }).then(() => {
           if(['null', 'undefined'].indexOf(typeof listItems) === -1){
-            listItems.appendChild(Item(CardElem({downloadURL, description: descriptionImg.value})));
-            showCountItem.innerHTML = `<small>${listItems.querySelectorAll("li").length} items listed.</small>`
+            let count = listItems.querySelectorAll("li").length + 1
+            let item = {downloadURL, description: descriptionImg.value, order: count};
+            listItems.appendChild(Item(CardElem(item), item));
+            showCountItem.innerHTML = `<small>${count} items listed.</small>`
           } else {
             loadItemsforList(rowMain, List, fb);
           }
