@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import initSortable from '../sortable.js';
 import fb from '../../services/ApiClient.js';
+import { List } from '../../components/ListImagesSortable/List.js';
 
 export const updateListOrder = () => {
   let current_list  = document.querySelectorAll('#listItems');
@@ -28,10 +29,10 @@ export const updateListOrder = () => {
 
 export const loadItemsforList = (element, List, fb) => {
   fb.db().ref('items').orderByChild('order').once('value',snapshot=>{
-    let res = _.sortBy(snapshot.val(), ['order']);
-    let _items = [];
+    if(!snapshot.val()) return;
 
-    if(res.length===0) return;
+    let _items = [];
+    let res = snapshot.val();
 
     Object.keys(res).forEach(i=>{
       _items.push({
@@ -41,6 +42,7 @@ export const loadItemsforList = (element, List, fb) => {
         description: res[i].description
       });
     });
+    _items.sort((a,b) => (a.order > b.order) ? 1 : ((b.order > a.order) ? -1 : 0));
 
     element.appendChild(List(_items));
 
@@ -53,11 +55,17 @@ export const loadItemsforList = (element, List, fb) => {
   return [];
 }
 
+export function deleteItem(id) {
+  fb.db().ref(`items/${id}`).remove();
+}
+
 export const initListEvents = (fb) => {
+
 }
 
 export default {
   updateListOrder,
   initListEvents,
-  loadItemsforList
+  loadItemsforList,
+  deleteItem
 };

@@ -1,9 +1,24 @@
 import { br } from '../../../constants/index.js';
 import ImageElem from './ImageElem.js';
+import { deleteItem } from '../../../domain/ListImagesSortable/ListEvents.js';
 
-function CardElem({downloadURL, description}) {
+function actionElem(className, _onClick) {
+  let element = document.createElement('a');
+  let i = document.createElement('i')
+
+  i.setAttribute('class', className);
+  i.setAttribute('style', 'padding-right: 10px;')
+
+  element.appendChild(i);
+  element.onclick = _onClick;
+
+  return element;
+
+}
+
+function CardElem({id, downloadURL, description}) {
   let element = document.createElement('figure');
-  let p = document.createElement('p')
+  let p = document.createElement('p');
   let style = `
     width: 100%;
     height: 100%;
@@ -20,7 +35,9 @@ function CardElem({downloadURL, description}) {
 
   element.setAttribute('style', style);
 
-  p.innerHTML = `<small>${description}</small><small><br><a><i class="fas fa-pen"></i></a>&nbsp;&nbsp;&nbsp;<a><i class="fas fa-trash"></i></a></small>`;
+  p.innerHTML = `<small>${description}</small></br>`;
+  p.appendChild(actionElem('fas fa-pen',()=>{}));
+  p.appendChild(actionElem('fas fa-trash',()=>{deleteItem(id)}));
 
   element.appendChild(ImageElem(downloadURL));
   element.appendChild(p);

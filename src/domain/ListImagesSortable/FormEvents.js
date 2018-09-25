@@ -29,6 +29,7 @@ export default function initFormEvents(fb) {
   });
   
   btnSave.addEventListener('click', () => {
+    btnSave.disabled = true;
     let file = getImageFromPc.files[0];
     let uploadTask = storage.child(`items/${file.name}`).put(file);
 
@@ -36,14 +37,17 @@ export default function initFormEvents(fb) {
     null,
     null,
     () => {
+      let count = typeof listItems !== 'undefined' ? listItems.querySelectorAll("li").length : 0;
       uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
-        database.ref('items/').push({
+        let newItem = database.ref('items').push();
+
+        newItem.set({
           downloadURL,
-          description: descriptionImg.value
+          description: descriptionImg.value,
+          order: count
         }).then(() => {
           if(['null', 'undefined'].indexOf(typeof listItems) === -1){
-            let count = listItems.querySelectorAll("li").length + 1
-            let item = {downloadURL, description: descriptionImg.value, order: count};
+            let item = {id: newItem.key,downloadURL, description: descriptionImg.value, order: count};
             listItems.appendChild(Item(CardElem(item), item));
             showCountItem.innerHTML = `<small>${count} items listed.</small>`
           } else {
@@ -54,6 +58,7 @@ export default function initFormEvents(fb) {
           getImageFromPc.value = '';
           setDescription.setAttribute('style', 'display:none');
           setImage.setAttribute('style', 'display:block');
+          alert('The new item was added in the bottom of list');
         })
       });
     });
