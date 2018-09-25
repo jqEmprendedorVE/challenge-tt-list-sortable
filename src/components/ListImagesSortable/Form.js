@@ -36,6 +36,14 @@ function textArea() {
 
 }
 
+function inputId() {
+  let element = document.createElement('input');
+
+  element.setAttribute('id', 'idItem');
+  element.setAttribute('type', 'hidden');
+  return element;
+}
+
 function inputFile() {
   let element = document.createElement('input');
 
@@ -64,6 +72,7 @@ function Form() {
 
   divSetDescription.setAttribute('id', 'setDescription');
   divSetDescription.setAttribute('style', 'display:none');
+  divSetDescription.appendChild(inputId());
   divSetDescription.appendChild(ImageElem(null,'prevImgForm', 'cursor: pointer;max-width: 320px;max-height: 320px;'));
   divSetDescription.appendChild(br());
   divSetDescription.appendChild(inputFile());

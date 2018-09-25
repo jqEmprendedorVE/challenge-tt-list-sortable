@@ -25,6 +25,7 @@ export default function initFormEvents(fb) {
   let database = fb.db()
 
   btnUploadImg.addEventListener('click', () => {
+    idItem.value = '';
     getImageFromPc.click();
   });
   

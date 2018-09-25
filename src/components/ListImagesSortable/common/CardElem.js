@@ -1,6 +1,6 @@
 import { br } from '../../../constants/index.js';
 import ImageElem from './ImageElem.js';
-import { deleteItem } from '../../../domain/ListImagesSortable/ListEvents.js';
+import { deleteItem, editItem } from '../../../domain/ListImagesSortable/ListEvents.js';
 
 function actionElem(className, _onClick) {
   let element = document.createElement('a');
@@ -36,7 +36,7 @@ function CardElem({id, downloadURL, description}) {
   element.setAttribute('style', style);
 
   p.innerHTML = `<small>${description}</small></br>`;
-  p.appendChild(actionElem('fas fa-pen',()=>{}));
+  p.appendChild(actionElem('fas fa-pen',()=>{editItem(id, downloadURL, description)}));
   p.appendChild(actionElem('fas fa-trash',()=>{deleteItem(id)}));
 
   element.appendChild(ImageElem(downloadURL));

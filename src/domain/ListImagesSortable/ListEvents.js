@@ -2,6 +2,7 @@ import _ from 'lodash';
 import initSortable from '../sortable.js';
 import fb from '../../services/ApiClient.js';
 import { List } from '../../components/ListImagesSortable/List.js';
+import { scrollToTop } from '../../util/index.js';
 
 export const updateListOrder = () => {
   let current_list  = document.querySelectorAll('#listItems');
@@ -42,6 +43,7 @@ export const loadItemsforList = (element, List, fb) => {
         description: res[i].description
       });
     });
+
     _items.sort((a,b) => (a.order > b.order) ? 1 : ((b.order > a.order) ? -1 : 0));
 
     element.appendChild(List(_items));
@@ -53,6 +55,18 @@ export const loadItemsforList = (element, List, fb) => {
   });
 
   return [];
+}
+
+export function editItem(id, downloadURL, description) {
+  descriptionImg.value = description;
+  getImageFromPc.value = '';
+  idItem.value = id;
+  prevImgForm.setAttribute('src', downloadURL);
+  setDescription.setAttribute('style', 'display:block');
+  setImage.setAttribute('style', 'display:none');
+
+  scrollToTop(1000);
+
 }
 
 export function deleteItem(id) {
@@ -70,5 +84,6 @@ export default {
   updateListOrder,
   initListEvents,
   loadItemsforList,
+  editItem,
   deleteItem
 };
