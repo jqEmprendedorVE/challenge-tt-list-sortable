@@ -38,14 +38,28 @@ const onCompleteNewItem = (uploadTask, database) => {
         loadItemsforList(rowMain, List, fb);
       }
 
-      descriptionImg.value = '';
-      getImageFromPc.value = '';
-      idItem.value = '';
-      setDescription.setAttribute('style', 'display:none');
-      setImage.setAttribute('style', 'display:block');
-      alert('The new item was added in the bottom of list');
+      cleanForm('The new item was added in the bottom of list');
+
     })
   });
+}
+
+const onCompleteEditItem = (database, item, fb) => {
+  database.ref(`items/${idItem.value}`).update(item)
+  .then(()=>{
+    rowMain.removeChild(document.getElementById('listColumn'));
+    loadItemsforList(rowMain, List, fb);
+    cleanForm('Item updated');
+  });
+}
+
+const cleanForm = (noti) => {
+  descriptionImg.value = '';
+  getImageFromPc.value = '';
+  idItem.value = '';
+  setDescription.setAttribute('style', 'display:none');
+  setImage.setAttribute('style', 'display:block');
+  alert(noti);  
 } 
 
 export default function initFormEvents(fb) {
@@ -60,16 +74,36 @@ export default function initFormEvents(fb) {
   btnSave.addEventListener('click', () => {
     const isEdit = idItem.value.length !== 0;
     btnSave.disabled = true;
-    let file = getImageFromPc.files[0];
-    let uploadTask = storage.child(`items/${file.name}`).put(file);
+    let file, uploadTask;
 
     if(isEdit){
+      if (getImageFromPc.files && getImageFromPc.files[0]){
+        file = getImageFromPc.files[0];
+        uploadTask = storage.child(`items/${file.name}`).put(file);
 
+        uploadTask.on(
+          'state_changed', 
+          ()=>{},
+          e=>{console.log(e)},
+          () => {
+            uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
+              onCompleteEditItem(database, {downloadURL, description: descriptionImg.value}, fb);
+            });
+          }
+        );
+      } else {
+        onCompleteEditItem(database, {description: descriptionImg.value}, fb);
+      }
     } else {
-      uploadTask.on('state_changed', 
-      ()=>{},
-      e=>{console.log(e)},
-      onCompleteNewItem(uploadTask, database));
+      file = getImageFromPc.files[0];
+      uploadTask = storage.child(`items/${file.name}`).put(file);
+
+      uploadTask.on(
+        'state_changed', 
+        ()=>{},
+        e=>{console.log(e)},
+        onCompleteNewItem(uploadTask, database)
+      );
     }
   });
 
