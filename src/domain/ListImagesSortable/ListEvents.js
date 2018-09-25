@@ -56,7 +56,10 @@ export const loadItemsforList = (element, List, fb) => {
 }
 
 export function deleteItem(id) {
-  fb.db().ref(`items/${id}`).remove();
+  fb.db().ref(`items/${id}`).remove().then(()=>{
+    rowMain.removeChild(document.getElementById('listColumn'));
+    loadItemsforList(rowMain, List, fb);
+  });
 }
 
 export const initListEvents = (fb) => {

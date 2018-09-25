@@ -29,6 +29,7 @@ export function List(items) {
   const span = `<span id="showCountItem" class="text-brown"><small>${items.length} items listed.</small></span>`;
   const p = `<p><small>Drag and drop the items for sortable. ${span}</small></p>`;
 
+  element.setAttribute('id', 'listColumn');
   element.setAttribute('class', 'col-6');
   element.innerHTML = `${h2}${p}`;
 
