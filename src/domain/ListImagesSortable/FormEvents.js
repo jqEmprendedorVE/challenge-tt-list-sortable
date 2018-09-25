@@ -49,7 +49,7 @@ export default function initFormEvents(fb) {
           if(['null', 'undefined'].indexOf(typeof listItems) === -1){
             let item = {id: newItem.key,downloadURL, description: descriptionImg.value, order: count};
             listItems.appendChild(Item(CardElem(item), item));
-            showCountItem.innerHTML = `<small>${count} items listed.</small>`
+            showCountItem.innerHTML = `<small>${count+1} items listed.</small>`
           } else {
             loadItemsforList(rowMain, List, fb);
           }
