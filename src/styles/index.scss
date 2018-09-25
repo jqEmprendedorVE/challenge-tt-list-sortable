@@ -8,7 +8,7 @@ body {
   background-color: $themeColor-Light;
 
   margin: auto;
-  width: 80%;
+  width: 90%;
   padding: 10px;
   margin-top: 50px;
 
@@ -35,6 +35,28 @@ body {
     img{
       max-width: 320px;
       max-height: 320px;
+    }
+  }
+
+  #rowMain {
+    @media only screen and (max-width: 930px) {
+      margin: auto;
+      width: 50%;
+    }
+
+    @media only screen and (max-width: 768px) {
+      margin: auto;
+      width: 65%;
+    }
+
+    @media only screen and (max-width: 599px) {
+      margin: auto;
+      width: 75%;
+    }
+
+    @media only screen and (max-width: 476px) {
+      margin: auto;
+      width: 95%;
     }
   }
 
