@@ -22,6 +22,13 @@ function ListItems(items) {
   return ul;
 }
 
+/**
+ *
+ * the next function load principal elements for the items to the list items
+ *
+ */
+
+
 export function List(items) {
   let element = document.createElement('div');
 

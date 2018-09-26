@@ -1,3 +1,9 @@
+/**
+ *
+ * function util sort list items to enable drag and drop
+ *
+ */
+
 function initSortable(updateListOrder) {
   $('#listItems').dragsort({
       dragSelector: 'li',

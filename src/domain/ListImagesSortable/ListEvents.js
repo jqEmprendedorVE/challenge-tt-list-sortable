@@ -4,6 +4,14 @@ import fb from '../../services/ApiClient.js';
 import { List } from '../../components/ListImagesSortable/List.js';
 import { scrollToTop } from '../../util/index.js';
 
+
+/**
+ *
+ * this function is for update order of list after make it 
+ * some sort with drag and drop
+ */
+
+
 export const updateListOrder = () => {
   let current_list  = document.querySelectorAll('#listItems');
 
@@ -27,6 +35,8 @@ export const updateListOrder = () => {
     fb.db().ref('items').set(items);
   }
 }
+
+/* load inicial data for app and in case reload */
 
 export const loadItemsforList = (element, List, fb) => {
   fb.db().ref('items').orderByChild('order').once('value',snapshot=>{
@@ -57,6 +67,8 @@ export const loadItemsforList = (element, List, fb) => {
   return [];
 }
 
+/* function for edit Item */
+
 export function editItem(id, downloadURL, description) {
   descriptionImg.value = description;
   getImageFromPc.value = '';
@@ -69,6 +81,7 @@ export function editItem(id, downloadURL, description) {
 
 }
 
+/* function for delete item */
 export function deleteItem(id) {
   fb.db().ref(`items/${id}`).remove().then(()=>{
     rowMain.removeChild(document.getElementById('listColumn'));
@@ -77,7 +90,7 @@ export function deleteItem(id) {
 }
 
 export const initListEvents = (fb) => {
-
+  // is mantain in case of add new listener of elements
 }
 
 export default {

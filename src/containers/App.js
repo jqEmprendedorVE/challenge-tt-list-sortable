@@ -5,6 +5,12 @@ import initSortable from '../domain/sortable.js';
 import Form from '../components/ListImagesSortable/Form.js';
 import { List } from '../components/ListImagesSortable/List.js';
 
+/**
+ *
+ * this class is for export load basics of components
+ * the components is store on ~/src/components
+ */
+
 class App {
   init() {
     let element = document.createElement('div');

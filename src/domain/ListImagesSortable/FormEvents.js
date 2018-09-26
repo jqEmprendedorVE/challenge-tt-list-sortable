@@ -3,6 +3,12 @@ import { Item } from '../../components/ListImagesSortable/List.js';
 import { loadItemsforList } from './ListEvents.js';
 import { List } from '../../components/ListImagesSortable/List.js';
 
+/**
+ *
+ * readURL() is a function for validate image size and previsualize de image
+ *
+ */
+
 function readURL() {
   if (getImageFromPc.files && getImageFromPc.files[0]) {
     let file = getImageFromPc.files[0];
@@ -26,8 +32,15 @@ function readURL() {
   }
 }
 
+
+/* function to handle error in case failed upload of image */
 const errorHandle = error => {alert('A error is detected, please try again')};
 
+/**
+ *
+ * The next funciton is for save data in database after upload image susccefully 
+ * in case add new item 
+ */
 const onCompleteNewItem = (uploadTask, database) => {
   let count = typeof listItems !== 'undefined' ? listItems.querySelectorAll("li").length : 0;
   uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
@@ -52,6 +65,11 @@ const onCompleteNewItem = (uploadTask, database) => {
   }).catch(errorHandle);
 }
 
+/**
+ *
+ * The next funciton is for save data in database after upload image susccefully 
+ * in case edit item 
+ */
 const onCompleteEditItem = (database, item, fb) => {
   database.ref(`items/${idItem.value}`).update(item)
   .then(()=>{
@@ -61,6 +79,12 @@ const onCompleteEditItem = (database, item, fb) => {
   });
 }
 
+/**
+ *
+ * function util for cleand form
+ *
+ */
+
 const cleanForm = (noti) => {
   descriptionImg.value = '';
   getImageFromPc.value = '';
@@ -69,6 +93,12 @@ const cleanForm = (noti) => {
   setImage.setAttribute('style', 'display:block');
   alert(noti);  
 } 
+
+/**
+ *
+ * function init for export principal events of the Form
+ *
+ */
 
 export default function initFormEvents(fb) {
   let storage  = fb.storage().ref();

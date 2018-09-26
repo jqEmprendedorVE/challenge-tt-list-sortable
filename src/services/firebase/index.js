@@ -11,6 +11,12 @@ var config = {
   messagingSenderId: "866472567588"
 };
 
+/**
+ *
+ * Principal services to connect the db with Firebase of Google
+ *
+ */
+
 var FirebasePlugin = {
   db: () => firebase.database(),
   storage: () => firebase.storage()

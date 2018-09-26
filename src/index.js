@@ -3,6 +3,10 @@ import App from './containers/App.js';
 import initEventHandler from './domain/eventHandlerApp.js';
 import './styles/index.css';
 
+/*
+  This section is the main app for load components in the DOM
+*/
+
 let loadComponents = new Promise((resolve, reject) => {
   try {
     document.body.appendChild(App.init());
@@ -13,6 +17,10 @@ let loadComponents = new Promise((resolve, reject) => {
     return reject();
   }
 });
+
+/*
+ Is load components is Ok, proceed to load eventHandler
+*/
 
 loadComponents.then(() => {
   initEventHandler();

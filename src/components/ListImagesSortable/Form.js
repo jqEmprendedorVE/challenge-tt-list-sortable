@@ -54,6 +54,11 @@ function inputFile() {
 
   return element;
 }
+/**
+ *
+ * the next function load principal elements for the form
+ * generate with other functions with composition
+ */
 
 function Form() {
   let element = document.createElement('div');
