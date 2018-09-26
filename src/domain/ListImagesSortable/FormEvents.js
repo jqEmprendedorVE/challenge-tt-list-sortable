@@ -3,13 +3,21 @@ import { Item } from '../../components/ListImagesSortable/List.js';
 import { loadItemsforList } from './ListEvents.js';
 import { List } from '../../components/ListImagesSortable/List.js';
 
-
 function readURL() {
   if (getImageFromPc.files && getImageFromPc.files[0]) {
     let file = getImageFromPc.files[0];
     var reader = new FileReader();
 
     reader.onload = function (e) {
+      let image = new Image();
+      image.src = e.target.result;
+      image.onload = function () {
+          var height = this.height;
+          var width = this.width;
+          if (height !== 320 || width !==320) {
+              cleanForm('This image must has 320x320 dimension. Select other, please!');
+          }
+      };
       prevImgForm.setAttribute('src', e.target.result);
     };
 
@@ -18,7 +26,7 @@ function readURL() {
   }
 }
 
-const error = error => {};
+const errorHandle = error => {alert('A error is detected, please try again')};
 
 const onCompleteNewItem = (uploadTask, database) => {
   let count = typeof listItems !== 'undefined' ? listItems.querySelectorAll("li").length : 0;
@@ -41,7 +49,7 @@ const onCompleteNewItem = (uploadTask, database) => {
       cleanForm('The new item was added in the bottom of list');
 
     })
-  });
+  }).catch(errorHandle);
 }
 
 const onCompleteEditItem = (database, item, fb) => {
@@ -88,7 +96,7 @@ export default function initFormEvents(fb) {
           () => {
             uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
               onCompleteEditItem(database, {downloadURL, description: descriptionImg.value}, fb);
-            });
+            }).catch(errorHandle);
           }
         );
       } else {
