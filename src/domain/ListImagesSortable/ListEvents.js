@@ -40,7 +40,7 @@ export const loadItemsforList = (element, List, fb) => {
         id: i,
         order: res[i].order,
         downloadURL: res[i].downloadURL,
-        description: res[i].description
+        description: res[i].description.replace(/<\/?[^>]+(>|$)/g, "")
       });
     });
 
